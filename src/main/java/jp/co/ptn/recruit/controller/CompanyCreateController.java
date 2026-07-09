@@ -33,7 +33,6 @@ public class CompanyCreateController {
 			BindingResult result,                               
 			Model model) {
 
-		// バリデーションエラーがある場合は、入力画面に戻す
 		if (result.hasErrors()) {
 			// エラー内容と入力データが保持されたまま入力画面へ戻ります
 			return "regist/company_create_input";
