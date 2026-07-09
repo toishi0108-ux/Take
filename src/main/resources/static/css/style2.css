@@ -1,0 +1,338 @@
+@charset "UTF-8";
+
+/* --- 全体・ベース設定 --- */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+body {
+	background-color: #a3b8cc;
+	/* 背景のくすんだブルー */
+	color: #333333;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* --- ヘッダー・フッター --- */
+.header {
+	background-color: #1a448c;
+	/* 濃いブルー */
+	color: #ffffff;
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.header h1 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+}
+
+.logout-btn {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 0.8rem;
+	position: absolute;
+	right: 20px;
+}
+
+.logout-btn:hover {
+	text-decoration: underline;
+}
+
+.footer {
+	background-color: #1a448c;
+	color: #ffffff;
+	text-align: center;
+	padding: 10px;
+	font-size: 0.8rem;
+	margin-top: auto;
+}
+
+/* --- メインレイアウト --- */
+.container {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 20px;
+}
+
+.form-window {
+	background-color: #ffffff;
+	width: 100%;
+	max-width: 760px;
+	/* 画面に収まりやすい最大幅 */
+	padding: 40px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- フォーム各セクション --- */
+.form-section {
+	margin-bottom: 25px;
+}
+
+.form-section h2 {
+	font-size: 1rem;
+	font-weight: bold;
+	margin-bottom: 12px;
+	border-bottom: none;
+}
+
+/* --- 入力要素のスタイル --- */
+.form-group {
+	margin-bottom: 12px;
+}
+
+.form-group label {
+	display: block;
+	font-size: 0.85rem;
+	color: #666666;
+	margin-bottom: 4px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group textarea {
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	font-size: 1rem;
+	outline: none;
+	transition: border-color 0.2s;
+	resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	border-color: #1a448c;
+}
+
+/* チェックボックス・ラジオボタン用 */
+.checkbox-group {
+	display: flex;
+	gap: 15px;
+	flex-wrap: wrap;
+	font-size: 0.9rem;
+}
+
+.checkbox-group label {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+
+/* --- ボタンエリア --- */
+.button-group {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 35px;
+}
+
+.btn {
+	padding: 10px 24px;
+	font-size: 0.9rem;
+	font-weight: bold;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	transition: opacity 0.2s;
+}
+
+.btn:hover {
+	opacity: 0.85;
+}
+
+.btn-back {
+	background-color: #555555;
+	color: #ffffff;
+}
+
+.btn-reset {
+	background-color: #888888;
+	color: #ffffff;
+}
+
+.btn-submit {
+	background-color: #1a448c;
+	color: #ffffff;
+}
+
+/* 中央に表示される白いカード型のボックス */
+.complete-window {
+	background-color: #ffffff;
+	border-radius: 6px;
+	padding: 40px 20px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	max-width: 600px;
+	width: 100%;
+	margin: 40px auto;
+	text-align: center;
+}
+
+/* 完了メッセージのテキスト */
+.complete-message {
+	font-size: 16px;
+	color: #333333;
+	margin-bottom: 30px;
+}
+
+/* ボタンの配置エリア */
+.complete-button-group {
+	display: flex;
+	justify-content: center;
+}
+
+/* 「検索画面へ戻る」ボタン特有の濃いネイビー色 */
+.btn-search-back {
+	display: inline-block;
+	background-color: #1e3a8a;
+	/* 画像の濃い紺色 */
+	color: #ffffff;
+	padding: 10px 30px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+	transition: background-color 0.2s ease;
+	border: none;
+	cursor: pointer;
+}
+
+/* ボタンにマウスを乗せたときの変化 */
+.btn-search-back:hover {
+	background-color: #112244;
+}
+
+.is-error {
+	border-color: #ff4d4f !important;
+	background-color: #fff2f0 !important;
+}
+
+/* エラーメッセージ（文字）のスタイル */
+.error-message {
+	color: #ff4d4f;
+	font-size: 0.85rem;
+	margin-top: 4px;
+	display: block;
+	text-align: left;
+	/* 左寄せ（フォームの並びに合わせる） */
+}
+
+/* ==========================================
+   共通・ベーススタイル（既存のものがあれば調整してください）
+   ========================================== */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+/* エラー画面全体のレイアウト制御 */
+.error-page-body {
+	display: flex;
+	flex-direction: column;
+	background-color: #a9bfc7;
+	/* 背景の淡いブルーグレー */
+}
+
+/* ==========================================
+   ヘッダー・フッター
+   ========================================== */
+.header {
+	background-color: #1a367c;
+	/* 濃いネイビー */
+	color: #ffffff;
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.header h1 {
+	margin: 0;
+	font-size: 1.5rem;
+	width: 100%;
+	text-align: center;
+	/* タイトルを中央寄せ */
+}
+
+.logout-btn {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 0.9rem;
+	position: absolute;
+	right: 20px;
+}
+
+.logout-btn:hover {
+	text-decoration: underline;
+}
+
+.footer {
+	background-color: #1a367c;
+	color: #ffffff;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 0.85rem;
+	margin-top: auto;
+	/* 常に最下部に配置 */
+}
+
+.footer p {
+	margin: 0;
+}
+
+/* ==========================================
+   メインコンテンツ・エラーウィンドウ
+   ========================================== */
+.container {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+/* 中央の白いボックス */
+.error-window {
+	background-color: #ffffff;
+	border-radius: 6px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 600px;
+	padding: 60px 40px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+/* エラーが発生しました（赤文字） */
+.error-title {
+	color: #ff4d4f;
+	font-size: 1.4rem;
+	margin-top: 0;
+	margin-bottom: 40px;
+	font-weight: bold;
+}
+
+/* お手数ですが再度お試しください。 */
+.error-text {
+	color: #333333;
+	font-size: 0.95rem;
+	margin: 0;
+}

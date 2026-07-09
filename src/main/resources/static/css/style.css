@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* 全体のリセットと背景設定 */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: #a9c0c7;
+	/* 全体のグレーブルーの背景色 */
+}
+
+html,
+body {
+	height: 100%;
+}
+
+/* ヘッダー */
+header {
+	background-color: #1e3d87;
+	/* 濃い青色 */
+	color: #ffffff;
+	text-align: center;
+	padding: 15px 0;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* メインコンテンツ（中央配置） */
+main {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+/* ログインフォームのコンテナ */
+.login-container {
+	background-color: #ececec;
+	/* 薄いグレーのボックス */
+	padding: 40px 50px;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 500px;
+}
+
+/* フォームの各行の配置 */
+.form-group {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	width: 125px;
+	/* 横幅を 110px から 125px に広げて1行に収めます */
+	font-size: 14px;
+	color: #333333;
+	font-weight: bold;
+	text-align: right;
+	/* 文字を右側に寄せて、コロンの位置を揃えます */
+	padding-right: 8px;
+	/* コロンと入力欄の間のすき間を程よく調整します */
+	flex-shrink: 0;
+	/* 画面が狭くなっても文字が絶対に潰れないようにします */
+	white-space: nowrap;
+	/* 万が一の場合も、途中で絶対に改行させない指示です */
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"] {
+	flex: 1;
+	padding: 6px 10px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+/* プレースホルダーの色調整 */
+.form-group input::placeholder {
+	color: #aaaaaa;
+}
+
+/* 「パスワードを表示する」チェックボックスの行 */
+.checkbox-group {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	font-size: 12px;
+	color: #333333;
+	padding-left: 20px;
+}
+
+.checkbox-group input {
+	margin-right: 5px;
+}
+
+/* ログインボタンの行 */
+.button-group {
+	text-align: center;
+}
+
+.login-btn {
+	background-color: #1e3d87;
+	color: #ffffff;
+	border: none;
+	padding: 8px 35px;
+	font-size: 14px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+	background-color: #152b61;
+	/* ホバー時に少し暗く */
+}
+
+/* フッター */
+footer {
+	background-color: #1e3d87;
+	color: #ffffff;
+	text-align: center;
+	padding: 10px 0;
+	font-size: 12px;
+}
+
+.error {
+	color: red;
+	font-size: 13px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}

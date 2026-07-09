@@ -1,0 +1,235 @@
+@charset "UTF-8";
+/* 全体基本設定 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ヘッダー */
+.header {
+  background-color: #1e3d8f;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center; /* タイトル（紹介会社検索）を中央に配置 */
+  align-items: center;
+  position: relative;     /* ログアウトボタンの位置の基準点 */
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.logout-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  /* ログアウトを右端へ絶対配置 */
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logout-link:hover {
+  text-decoration: underline;
+}
+
+/* レイアウトコンテナ */
+.container {
+  display: flex;
+  min-height: calc(100vh - 58px);
+}
+
+/* セクション共通タイトル */
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 左側：検索条件サイドバー */
+.sidebar {
+  width: 350px;
+  background-color: #e6e6e6;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group label.group-label {
+  margin-bottom: 8px;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.checkbox-group label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: normal;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+/* ボタン共通 */
+.btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.search-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-search {
+  background-color: #1e3d8f;
+  color: #fff;
+}
+
+.btn-reset {
+  background-color: #1e3d8f;
+  color: #fff;
+}
+
+/* 右側：メインコンテンツ */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* 並び替え */
+.sort-container {
+  margin-bottom: 15px;
+}
+
+.sort-container label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.sort-container select {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* テーブル横スクロールラッパー */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* テーブルスタイル */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* テキストの自動折り返しを防ぎ、画像通りの横長を維持 */
+}
+
+.result-table th, 
+.result-table td {
+  border: 1px solid #ddd;
+  padding: 10px 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.result-table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* 縦書きヘッダー用クラス（全国・中部・東京・関西・九州・未経験採用・経験者採用など） */
+.vertical-th {
+  writing-mode: vertical-rl;
+  text-combine-upright: none;
+  padding: 15px 8px; /* 縦書き用に上下の余白を少し調整 */
+  letter-spacing: 2px; /* 文字の間隔を少しあけて読みやすく */
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.link-id {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* テーブル下部アクションボタン */
+.table-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  background-color: #1e3d8f;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+footer {
+    background-color: #1e3d87;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+}

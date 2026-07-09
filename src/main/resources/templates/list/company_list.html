@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>紹介会社検索</title>
+	<link rel="stylesheet" th:href="@{/css/style1.css}">
+</head>
+
+<body>
+	<header th:replace="~{/common/listheader :: listheader-fragment}"></header>
+
+	<div class="container">
+		<aside th:replace="~{/common/sidebar :: sidebar-fragment}"></aside>
+
+		<main class="main-content">
+			<h2 class="section-title">検索結果</h2>
+			<div class="sort-container">
+				<label for="sort-select">並び替え</label>
+				<select id="sort-select" name="sort" onchange="location.href='/referral_management/list?sort=' + this.value">
+					<option value="create_desc" th:selected="${currentSort == 'create_desc'}">作成日時（新しい順）</option>
+					<option value="create_old" th:selected="${currentSort == 'create_old'}">作成日時（古い順）</option>
+					<option value="name_asc" th:selected="${currentSort == 'name_asc'}">紹介会社名（昇順）</option>
+					<option value="name_desc" th:selected="${currentSort == 'name_desc'}">紹介会社名（降順）</option>
+				</select>
+			</div>
+			<div class="table-wrapper">
+				<table class="result-table">
+					<thead>
+						<tr>
+							<th style="width: 50px;">No</th>
+							<th style="min-width: 150px;">会社名</th>
+							<th style="min-width: 100px;">会社名（カナ）</th>
+							<th style="min-width: 100px;">担当者名</th>
+							<th style="min-width: 140px;">紹介会社電話番号</th>
+							<th style="width: 40px;" class="vertical-th text-center">全国</th>
+							<th style="width: 40px;" class="vertical-th text-center">東京</th>
+							<th style="width: 40px;" class="vertical-th text-center">中部</th>
+							<th style="width: 40px;" class="vertical-th text-center">関西</th>
+							<th style="width: 40px;" class="vertical-th text-center">九州</th>
+							<th style="min-width: 180px;">紹介会社住所</th>
+							<th style="width: 70px;" class="vertical-th text-center">未経験採用</th>
+							<th style="width: 70px;" class="vertical-th text-center">経験者採用</th>
+							<th style="width: 50px;">削除</th>
+							<th style="min-width: 200px;">備考</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="row : ${companyList}">
+							<td class="text-center">
+								<a th:href="@{/company/update/input(companyCd=${row.companyCd})}" class="link-id"
+									th:text="${row.companyCd}"></a>
+							</td>
+							<td th:text="${row.companyNm}">株式会社サンプル</td>
+							<td th:classappend="${row.companyKanaNm == null} ? 'text-center'"
+								th:text="${row.companyKanaNm != null ? row.companyKanaNm : '-'}">カナ</td>
+							<td th:text="${row.personNm}">紹介太郎</td>
+							<td th:text="${row.companyTel}">03-1234-5678</td>
+							<td class="text-center">
+								<input type="checkbox"
+									th:checked="${row.areaTokyo and row.areaChubu and row.areaKansai and row.areaKyusyu}"
+									disabled>
+							</td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.areaTokyo}" disabled></td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.areaChubu}" disabled></td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.areaKansai}" disabled></td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.areaKyusyu}" disabled></td>
+							<td th:text="${row.companyAddress != null ? row.companyAddress : '未登録'}">東京都中央区〇〇</td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.noExperienceFlg}" disabled>
+							</td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.experiencedFlg}" disabled>
+							</td>
+							<td class="text-center"><input type="checkbox" th:checked="${row.deleteFlg}"></td>
+							<td th:text="${row.notes != null ? row.notes : '-'}">ちょっと長めの備考テキストです</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="table-actions">
+				<a th:href="@{/register}" class="btn btn-primary">新規登録</a>
+				<button class="btn btn-danger">削除</button>
+				<button class="btn btn-primary">CSV出力</button>
+			</div>
+		</main>
+	</div>
+
+	<footer th:replace="~{/common/footer :: footer}"></footer>
+</body>
+
+</html>

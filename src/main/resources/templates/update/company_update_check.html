@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>紹介会社更新確認画面</title>
+	<link rel="stylesheet" th:href="@{/css/goodstyle.css}">
+</head>
+
+<body>
+
+	<header class="header">
+		<h1>紹介会社更新確認画面</h1>
+		<a th:href="@{/}" class="logout-btn">ログアウト</a>
+	</header>
+
+	<main class="container">
+
+		<div class="form-window">
+
+			<!-- ===== 紹介会社情報 ===== -->
+			<section class="form-section">
+				<h2>紹介会社情報</h2>
+
+				<div class="form-group">
+					<label>紹介会社名</label>
+					<div th:text="${mstCompanyForm.referralCompanyNm}"></div>
+				</div>
+
+				<div class="form-group">
+					<label>紹介会社カナ</label>
+					<div th:text="${mstCompanyForm.referralCompanyKananm}"></div>
+				</div>
+
+				<div class="form-group">
+					<label>紹介会社電話番号</label>
+					<div th:text="${#strings.length(mstCompanyForm.referralCompanyTel) == 11
+    ? #strings.substring(mstCompanyForm.referralCompanyTel,0,3)
+      + '-'
+      + #strings.substring(mstCompanyForm.referralCompanyTel,3,7)
+      + '-'
+      + #strings.substring(mstCompanyForm.referralCompanyTel,7,11)
+    : mstCompanyForm.referralCompanyTel}">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label>紹介会社住所</label>
+					<div th:text="${mstCompanyForm.referralCompanyAddress}"></div>
+				</div>
+			</section>
+
+			<!-- ===== 担当地区 ===== -->
+			<section class="form-section">
+				<div class="form-group">
+					<label>担当地区</label>
+					<div>
+						<span th:if="${mstCompanyForm.areaTokyo}">東京　</span>
+						<span th:if="${mstCompanyForm.areaChubu}">中部　</span>
+						<span th:if="${mstCompanyForm.areaKansai}">関西　</span>
+						<span th:if="${mstCompanyForm.areaKyusyu}">九州　</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- ===== 担当者情報 ===== -->
+			<section class="form-section">
+				<h2>担当者情報</h2>
+
+				<div class="form-group">
+					<label>担当者名</label>
+					<div th:text="${mstCompanyForm.personNm}"></div>
+				</div>
+
+				<div class="form-group">
+					<label>メールアドレス</label>
+					<div th:text="${mstCompanyForm.personEmail}"></div>
+				</div>
+
+				<div class="form-group">
+					<label>担当者電話番号</label>
+					<div th:text="${#strings.length(mstCompanyForm.personTel) == 11
+    ? #strings.substring(mstCompanyForm.personTel,0,3)
+      + '-'
+      + #strings.substring(mstCompanyForm.personTel,3,7)
+      + '-'
+      + #strings.substring(mstCompanyForm.personTel,7,11)
+    : mstCompanyForm.personTel}">
+					</div>
+				</div>
+			</section>
+
+			<!-- ===== 経験区分 ===== -->
+			<section class="form-section">
+				<div class="form-group">
+					<label>経験区分</label>
+					<div>
+						<span th:if="${mstCompanyForm.noExperienceFlg}">未経験採用　</span>
+						<span th:if="${mstCompanyForm.experiencedFlg}">経験者採用</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- ===== 備考 ===== -->
+			<section class="form-section">
+				<div class="form-group">
+					<label>備考</label>
+					<div th:text="${mstCompanyForm.notes}"></div>
+				</div>
+			</section>
+
+			<!-- ===== ボタン ===== -->
+			<div class="button-group">
+
+				<a th:href="@{/company/update/input(companyCd=${mstCompanyForm.referralCompanyCd})}">
+					<button type="button" class="btn btn-back">戻る</button>
+				</a>
+
+				<form method="post" th:action="@{/company/update/complete}" th:object="${mstCompanyForm}">
+					<input type="hidden" th:field="*{referralCompanyCd}">
+					<input type="hidden" th:field="*{referralCompanyNm}">
+					<input type="hidden" th:field="*{referralCompanyKananm}">
+					<input type="hidden" th:field="*{referralCompanyTel}">
+					<input type="hidden" th:field="*{referralCompanyAddress}">
+					<input type="hidden" th:field="*{areaTokyo}">
+					<input type="hidden" th:field="*{areaChubu}">
+					<input type="hidden" th:field="*{areaKansai}">
+					<input type="hidden" th:field="*{areaKyusyu}">
+					<input type="hidden" th:field="*{personNm}">
+					<input type="hidden" th:field="*{personEmail}">
+					<input type="hidden" th:field="*{personTel}">
+					<input type="hidden" th:field="*{noExperienceFlg}">
+					<input type="hidden" th:field="*{experiencedFlg}">
+					<input type="hidden" th:field="*{notes}">
+
+					<button type="submit" class="btn btn-submit">更新</button>
+				</form>
+
+			</div>
+
+		</div>
+
+	</main>
+
+	<footer class="footer">
+		<p>バージョン 01.00.00</p>
+	</footer>
+
+</body>
+
+</html>

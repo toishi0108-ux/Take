@@ -1,0 +1,192 @@
+/* --- 全体・ベース設定 --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+body {
+    background-color: #a3b8cc; /* 背景のくすんだブルー */
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- ヘッダー・フッター --- */
+.header {
+    background-color: #1a448c; /* 濃いブルー */
+    color: #ffffff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.logout-btn {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    position: absolute;
+    right: 20px;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #1a448c;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    margin-top: auto;
+}
+
+/* --- メインレイアウト --- */
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.form-window {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 760px; /* 画面に収まりやすい最大幅 */
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- フォーム各セクション --- */
+.form-section {
+    margin-bottom: 20px;
+}
+
+/* 大見出し（太文字） */
+.form-section h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+/* --- 各項目の共通スタイル（基本は確認画面用） --- */
+.form-group {
+    border-bottom: 1px solid #e2e8f0; /* 確認画面用の薄いグレーの区切り線 */
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+/* すべての項目名（太文字） */
+.form-group label {
+    display: block;        /* 必ず改行させて値と縦並びにする */
+    font-size: 0.9rem;
+    font-weight: bold;     /* 太文字 */
+    color: #333333;        /* 文字色をはっきりした黒寄りに */
+    margin-bottom: 8px;    /* 項目名と値の間の余白 */
+}
+
+/* 確定された表示値（確認画面用div） */
+.form-group div {
+    font-size: 1rem;
+    color: #333333;
+}
+
+
+/* --- 【注目】入力画面（フォーム要素がある場合）の個別上書き設定 --- */
+
+/* 入力欄がある項目は、確認画面用の「下区切り線」を消す */
+.form-group:has(input),
+.form-group:has(textarea),
+.form-group:has(select) {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+/* テキストボックス・テキストエリアを横いっぱいに広げて枠線をつける */
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;             /* 横いっぱいに広げる */
+    padding: 10px 12px;      /* 内側の余白 */
+    border: 1px solid #cccccc; /* 薄いグレーの四角い枠線 */
+    border-radius: 4px;      /* 角を少し丸くする */
+    font-size: 1rem;
+    color: #333333;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* テキストボックスにカーソルが当たったとき（濃い青枠にする） */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1a448c;
+    box-shadow: 0 0 4px rgba(26, 68, 140, 0.2);
+}
+
+/* 備考欄（テキストエリア）の高さ調整 */
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical; /* 上下にだけサイズ変更可能にする */
+}
+
+/* チェックボックス（担当地区・経験区分など）の並び調整 */
+.form-group div:has(input[type="checkbox"]) {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-top: 5px;
+}
+
+
+/* --- ボタンエリア --- */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn-back {
+    background-color: #555555;
+    color: #ffffff;
+}
+
+.btn-reset {
+    background-color: #888888;
+    color: #ffffff;
+}
+
+.btn-submit {
+    background-color: #1a448c;
+    color: #ffffff;
+}

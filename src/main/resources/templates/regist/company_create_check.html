@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>紹介会社新規登録チェック画面</title>
+	<link rel="stylesheet" th:href="@{/css/style2.css}">
+</head>
+
+<body>
+	<header class="header">
+		<h1>紹介会社新規登録確認画面</h1>
+		<a th:href="@{/}" class="logout-btn">ログアウト</a>
+	</header>
+	<main class="container">
+		<form class="form-window" th:action="@{/register/execute}" method="post" th:object="${companyForm}">
+			<input type="hidden" th:field="*{CompanyNm}">
+			<input type="hidden" th:field="*{CompanyKananm}">
+			<input type="hidden" th:field="*{CompanyTel}">
+			<input type="hidden" th:field="*{CompanyAddress}">
+			<input type="hidden" th:field="*{areaAll}">
+			<input type="hidden" th:field="*{areaTokyo}">
+			<input type="hidden" th:field="*{areaChubu}">
+			<input type="hidden" th:field="*{areaKansai}">
+			<input type="hidden" th:field="*{areaKyusyu}">
+			<input type="hidden" th:field="*{personNm}">
+			<input type="hidden" th:field="*{personEmail}">
+			<input type="hidden" th:field="*{personTel}">
+			<input type="hidden" th:field="*{noExperienceFlg}">
+			<input type="hidden" th:field="*{experiencedFlg}">
+			<input type="hidden" th:field="*{notes}">
+
+			<section class="form-section">
+				<h2>紹介会社情報</h2>
+				<div class="form-group">
+					<label>紹介会社名</label>
+					<span class="confirm-value" th:text="*{CompanyNm}"></span>
+				</div>
+				<div class="form-group">
+					<label>紹介会社カナ</label>
+					<span class="confirm-value" th:text="*{CompanyKananm}"></span>
+				</div>
+				<div class="form-group">
+					<label>紹介会社電話番号</label>
+					<span class="confirm-value" th:text="*{CompanyTel}"></span>
+				</div>
+				<div class="form-group">
+					<label>紹介会社住所</label>
+					<span class="confirm-value" th:text="*{CompanyAddress}"></span>
+				</div>
+			</section>
+			<section class="form-section">
+				<h2>担当地区</h2>
+				<div class="confirm-value-group">
+					<span th:if="*{areaAll}">【全国】 </span>
+					<span th:if="*{areaTokyo}">東京 </span>
+					<span th:if="*{areaChubu}">中部 </span>
+					<span th:if="*{areaKansai}">関西 </span>
+					<span th:if="*{areaKyusyu}">九州 </span>
+					<span th:if="*{!areaAll and !areaTokyo and !areaChubu and !areaKansai and !areaKyusyu}">選択なし</span>
+				</div>
+			</section>
+			<section class="form-section">
+				<h2>担当者情報</h2>
+				<div class="form-group">
+					<label>担当者名</label>
+					<span class="confirm-value" th:text="*{personNm}"></span>
+				</div>
+				<div class="form-group">
+					<label>メールアドレス</label>
+					<span class="confirm-value" th:text="*{personEmail}"></span>
+				</div>
+				<div class="form-group">
+					<label>担当者電話番号</label>
+					<span class="confirm-value" th:text="*{personTel}"></span>
+				</div>
+			</section>
+			<section class="form-section">
+				<h2>経験区分</h2>
+				<div class="confirm-value-group">
+					<span th:if="*{noExperienceFlg}">未経験採用 </span>
+					<span th:if="*{experiencedFlg}">経験者採用 </span>
+					<span th:if="*{!noExperienceFlg and !experiencedFlg}">選択なし</span>
+				</div>
+			</section>
+			<section class="form-section">
+				<h2>備考</h2>
+				<div class="form-group">
+					<span class="confirm-value" th:text="*{notes}" style="white-space: pre-wrap;"></span>
+				</div>
+				<div class="button-group">
+					<button type="submit" name="back" value="true" class="btn btn-back">戻る</button>
+					<button type="submit" class="btn btn-submit">登録する</button>
+				</div>
+		</form>
+	</main>
+	<footer class="footer">
+		<p>バージョン 01.00.00</p>
+	</footer>
+</body>
+
+</html>
+</section>

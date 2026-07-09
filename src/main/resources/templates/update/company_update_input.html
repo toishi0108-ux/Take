@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>紹介会社更新入力画面</title>
+	<link rel="stylesheet" th:href="@{/css/goodstyle.css}">
+</head>
+
+<body>
+	<header class="header">
+		<h1>紹介会社更新入力画面</h1>
+		<a th:href="@{/}" class="logout-btn">ログアウト</a>
+	</header>
+	<main class="container">
+		<form class="form-window" method="post" th:action="@{/company/update/check}" th:object="${mstCompanyForm}">
+			<input type="hidden" th:field="*{referralCompanyCd}" />
+
+			<div class="error-container" th:if="${#fields.hasErrors('*')}">
+				<p style="color: red; font-weight: bold;">入力内容に不備があります。メッセージを確認してください。</p>
+			</div>
+
+			<section class="form-section">
+				<h2>紹介会社情報</h2>
+				<div class="form-group">
+					<label for="referralCompanyNm">紹介会社名</label>
+					<input type="text" th:field="*{referralCompanyNm}">
+					<span th:if="${#fields.hasErrors('referralCompanyNm')}" th:errors="*{referralCompanyNm}"
+						style="color:red;"></span>
+				</div>
+				<div class="form-group">
+					<label for="referralCompanyKananm">紹介会社カナ</label>
+					<input type="text" th:field="*{referralCompanyKananm}">
+					<span th:if="${#fields.hasErrors('referralCompanyKananm')}" th:errors="*{referralCompanyKananm}"
+						style="color:red;"></span>
+				</div>
+				<div class="form-group">
+					<label for="referralCompanyTel">紹介会社電話番号</label>
+					<input type="tel" th:field="*{referralCompanyTel}">
+					<span th:if="${#fields.hasErrors('referralCompanyTel')}" th:errors="*{referralCompanyTel}"
+						style="color:red;"></span>
+				</div>
+				<div class="form-group">
+					<label for="referralCompanyAddress">紹介会社住所</label>
+					<input type="text" th:field="*{referralCompanyAddress}">
+					<span th:if="${#fields.hasErrors('referralCompanyAddress')}" th:errors="*{referralCompanyAddress}"
+						style="color:red;"></span>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>担当地区</h2>
+				<span th:if="${#fields.hasErrors('areaTokyo')}" th:errors="*{areaTokyo}"
+					style="color:red; display:block;"></span>
+				<div class="checkbox-group">
+					<label><input type="checkbox" id="check-all"> 全国</label>
+					<label><input type="checkbox" class="region-cb" th:field="*{areaTokyo}" th:value="1"> 東京</label>
+					<label><input type="checkbox" class="region-cb" th:field="*{areaChubu}" th:value="1"> 中部</label>
+					<label><input type="checkbox" class="region-cb" th:field="*{areaKansai}" th:value="1"> 関西</label>
+					<label><input type="checkbox" class="region-cb" th:field="*{areaKyusyu}" th:value="1"> 九州</label>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>担当者情報</h2>
+				<div class="form-group">
+					<label>担当者名</label>
+					<input type="text" th:field="*{personNm}">
+					<span th:if="${#fields.hasErrors('personNm')}" th:errors="*{personNm}" style="color:red;"></span>
+				</div>
+				<div class="form-group">
+					<label>メール</label>
+					<input type="email" th:field="*{personEmail}">
+					<span th:if="${#fields.hasErrors('personEmail')}" th:errors="*{personEmail}"
+						style="color:red;"></span>
+				</div>
+				<div class="form-group">
+					<label>電話</label>
+					<input type="text" th:field="*{personTel}">
+					<span th:if="${#fields.hasErrors('personTel')}" th:errors="*{personTel}" style="color:red;"></span>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>経験区分</h2>
+				<span th:if="${#fields.hasErrors('noExperienceFlg')}" th:errors="*{noExperienceFlg}"
+					style="color:red; display:block;"></span>
+				<div class="checkbox-group">
+					<label><input type="checkbox" th:field="*{noExperienceFlg}" th:value="1"> 未経験採用</label>
+					<label><input type="checkbox" th:field="*{experiencedFlg}" th:value="1"> 経験者採用</label>
+				</div>
+			</section>
+
+			<section class="form-section">
+				<h2>備考</h2>
+				<div class="form-group">
+					<textarea th:field="*{notes}" rows="4"></textarea>
+					<span th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}" style="color:red;"></span>
+				</div>
+			</section>
+
+			<div class="button-group">
+				<a th:href="@{/list}" class="btn btn-back"
+					style="text-decoration: none; text-align: center; line-height: normal;">戻る</a>
+				<button type="reset" class="btn btn-reset">リセット</button>
+				<button type="submit" class="btn btn-submit">確認画面へ</button>
+			</div>
+		</form>
+	</main>
+	<footer class="footer">
+		<p>バージョン 01.00.00</p>
+	</footer>
+
+	<script>
+		const checkAll = document.getElementById('check-all');
+		const regionCbs = document.querySelectorAll('.region-cb');
+
+		// 1. 「全国」にチェックを入れると全地区が選択される仕様
+		checkAll.addEventListener('change', function () {
+			regionCbs.forEach(cb => {
+				cb.checked = checkAll.checked;
+			});
+		});
+
+		// 2. 個別チェックが外れたら全国チェックも外す制御
+		regionCbs.forEach(cb => {
+			cb.addEventListener('change', function () {
+				const allChecked = Array.from(regionCbs).every(c => c.checked);
+				checkAll.checked = allChecked;
+			});
+		});
+
+		// 3. フォーム送信時（確認画面へボタン押下時）の未選択チェックアラート制御
+		const form = document.querySelector('.form-window');
+		form.addEventListener('submit', function (event) {
+			// 担当地区のいずれかが選択されているか判定
+			const isRegionChecked = checkAll.checked || Array.from(regionCbs).some(cb => cb.checked);
+
+			// 経験区分のいずれかが選択されているか判定
+			const noExpCb = document.querySelector('input[name="noExperienceFlg"]');
+			const expCb = document.querySelector('input[name="experiencedFlg"]');
+			const isExperienceChecked = (noExpCb && noExpCb.checked) || (expCb && expCb.checked);
+
+			let errorMessage = "";
+
+			if (!isRegionChecked) {
+				errorMessage += "担当地区を選択してください\n";
+			}
+			if (!isExperienceChecked) {
+				errorMessage += "経験区分を選択してください\n";
+			}
+
+			// 未選択による不備がある場合、アラートを出して遷移を中止する
+			if (errorMessage !== "") {
+				alert(errorMessage.trim());
+				event.preventDefault(); // フォームの送信動作をブロック
+			}
+		});
+	</script>
+</body>
+
+</html>
